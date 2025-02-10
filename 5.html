@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta de San Valentín</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        .carta {
+            display: none;
+            width: 300px;
+            padding: 20px;
+            border: 2px solid #ff69b4;
+            border-radius: 10px;
+            background-color: rgb(253, 106, 179);
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .sticker {
+            width: 150px;
+            height: 150px;
+            margin-top: 10px; /* Espacio entre el texto y el sticker */
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff69b41f;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .no-button {
+            position: fixed;
+            width: 100px; /* Tamaño reducido */
+            height: 40px; /* Tamaño reducido */
+            background-color: rgb(255, 0, 0);
+            border: none;
+            cursor: pointer;
+            display: none;
+            left: calc(50% - 50px); /* Centrado horizontalmente */
+            top: calc(50% - 20px); /* Centrado verticalmente */
+        }
+        .carta-fondo {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeC0gdPx9ISftZ25fG-eh1-GXQeUcTpZKw-w&s'); /* Reemplaza con tu imagen de carta */
+            background-size: cover; /* Ajusta la imagen para cubrir el área */
+            width: 400px; /* Ajusta el tamaño según sea necesario */
+            height: 400px; /* Ajusta el tamaño según sea necesario */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .respuesta-fondo {
+            background-color: #fc7aa3; /* Cambia este color según tus preferencias */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="carta-fondo">
+        <button class="button" onclick="mostrarCarta()">¡TOCA AQUII!</button>
+    </div>
+
+    <div class="carta" id="carta">
+        <img src="https://media3.giphy.com/media/9d3LQ6TdV2Flo8ODTU/giphy.webp?cid=790b76119u6hgbceis853v0vtm1raj69b4krtin2lwzlxw4w&ep=v1_gifs_search&rid=giphy.webp&ct=g" alt="Sticker" class="sticker"><br>
+        <h1>¿Quieres ser mi San Valentín? ❤️</h1>
+        <h2>MI NAOO BELLA  💕</h2>
+        <button class="button" id="siButton" onclick="responder('si')">Sí</button>
+        <button class="no-button" id="noButton" onclick="moverNo()">No</button>
+    </div> 
+
+    <div id="respuesta" class="respuesta-fondo" style="display:none;">
+        <p id="mensaje"></p>
+        <img src="https://media2.giphy.com/media/4N1wOi78ZGzSB6H7vK/200.webp?cid=790b76119u6hgbceis853v0vtm1raj69b4krtin2lwzlxw4w&ep=v1_gifs_search&rid=200.webp&ct=g" alt="Sticker" class="sticker">
+        <button class="button" onclick="cerrarRespuesta()">Cerrar</button>
+    </div>
+
+    <script>
+        function mostrarCarta() {
+            document.querySelector('.carta-fondo').style.display = 'none';
+            document.getElementById('carta').style.display = 'block';
+            document.getElementById('noButton').style.display = 'block';
+        }
+
+        function moverNo() {
+            const noButton = document.getElementById('noButton');
+            const x = Math.random() * (window.innerWidth - 50);
+            const y = Math.random() * (window.innerHeight - 50);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        }
+
+        function responder(opcion) {
+            const mensaje = document.getElementById('mensaje');
+            if (opcion === 'si') {
+                mensaje.textContent = 'hola mi vida, si llegaste hatsa este punto fue porque aceptaste🙈 te amo tantooooo💞 ¡gracias por ser mi san valentin,eres la mejor! lo mejor que me ha pasado en la vidq, te amo un buennnnnn, mi nena presiosaaaaa, me encantas infinitamente,gracxias por todos lo momentos que hemos compartido a lo largo de la relacion con muchisissisimoo aamoooooor.besotessssss mi princecita bella💘.para mi princecita bella, atte:eliseinnnnnn';
+                document.getElementById('respuesta').style.display = 'block'; // Mostrar respuesta
+            }
+            document.getElementById('carta').style.display = 'none';
+        }
+
+        function cerrarRespuesta() {
+            document.getElementById('respuesta').style.display = 'none';
+            document.querySelector('.carta-fondo').style.display = 'flex';
+        }
+    </script>
+
+</body>
+</html>
